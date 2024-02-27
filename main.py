@@ -1,10 +1,10 @@
 import tkinter as tk
 from tkinter import filedialog
 import customtkinter as ctk
-import subprocess
 
 
 import screen
+import addExe
 
 
 def browse_file():
@@ -12,12 +12,8 @@ def browse_file():
         ('exe', '*.exe'),
     )
     file_path = filedialog.askopenfilename(filetypes=filetypes)
-    if file_path:
-        print(f"Selected file: {file_path}")
-        filename = file_path.split("/")
-        label = ctk.CTkLabel(frame, text=filename[-1][:-4])
-        label.pack()
-        # subprocess.Popen(filename)
+
+    addExe.add_exe(file_path, frame)
 
 
 # Set App Frame
@@ -25,7 +21,7 @@ ctk.set_appearance_mode("System")
 app = ctk.CTk()
 app.geometry(f"{screen.window_width}x{screen.window_height}+{screen.x_coordinate}+{screen.y_coordinate}")
 app.title("ProgSelect")
-# app.overrideredirect(True)
+app.overrideredirect(True)
 
 frame = ctk.CTkFrame(app, corner_radius=20)
 frame.pack(fill=tk.BOTH, expand=True, padx=30, pady=30)
