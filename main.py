@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import filedialog
 import customtkinter as ctk
 
-from setup import setScreen
+from setup import setScreen, drawCanvas
 from features import addFile
 
 
@@ -24,16 +24,20 @@ app.geometry(f"{setScreen.window_width}x{setScreen.window_height}+{setScreen.x_c
 app.title("ProgSelect")
 app.overrideredirect(True)
 
-canvas = tk.Canvas(app, bg="white", highlightthickness=0)
-canvas.pack(fill=tk.BOTH, expand=True)
+canvas = drawCanvas.add_canvas(app)
+
 frame = ctk.CTkFrame(canvas, corner_radius=20)
 frame.pack(fill=tk.BOTH, expand=True, padx=30, pady=30)
+
 button = ctk.CTkButton(
     canvas,
     width=100,
     height=100,
     text_color="black",
     fg_color="grey",
+    hover_color="lightblue",
+    border_color="black",
+    border_width=4,
     text="+",
     font=("Ariel", 80),
     corner_radius=20,
